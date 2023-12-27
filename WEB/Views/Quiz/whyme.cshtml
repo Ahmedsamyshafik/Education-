@@ -1,0 +1,44 @@
+﻿@model QuizTable
+
+@{
+    ViewData["Title"] = "whyme";
+}
+
+<h1>whyme</h1>
+
+@* <form class="container py-3" method="post" asp-action="whyme" enctype="multipart/form-data">
+
+
+
+	<label asp-for="@Model.File"></label>
+	<input type="file" asp-for="@Model.File" name="File" class="form-control rounded-2" />
+
+	<button type="submit" class="btn btn-info">Submit</button>
+</form>
+ *@
+<form class="addQuiz" method="post" asp-action="whyme" enctype="multipart/form-data">
+    <input type="file" asp-for="@Model.File" name="File" class="form-control" placeholder="ve" accept="application/pdf">
+    <input type="text" asp-for="@Model.Title" name="Title" class="rounded-2 form-control" placeholder="File Name" hidden>
+    <input type="text" asp-for="@Model.Description" name="Description" class="rounded-2 form-control" placeholder="File Description" hidden>
+
+    <div class="form-group">
+
+        <select class="form-select" hidden asp-for="Alldegrees" name="Alldegrees" asp-items="Html.GetEnumSelectList<Alldegrees>()"
+                aria-placeholder="bob">
+            <option value="" disabled selected hidden>Select Degree</option>
+        </select>
+        <span asp-validation-for="Alldegrees" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+
+        <select class="form-select" hidden asp-for="Semester" name="Semester" asp-items="Html.GetEnumSelectList<Semester>()"
+                aria-placeholder="bob">
+            <option value="" disabled selected hidden>Select Semester</option>
+        </select>
+        <span asp-validation-for="Semester" class="text-danger"></span>
+    </div>
+
+    <button id="saveButton" type="submit" class="btn fw-bold">Save</button>
+    <br />
+
+</form>

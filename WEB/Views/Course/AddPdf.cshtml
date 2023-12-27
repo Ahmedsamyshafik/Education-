@@ -1,0 +1,35 @@
+﻿@model PdfMaterial 
+@{
+    ViewData["Title"] = "AddPdf";
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/pdf.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css.map">
+    <title>مقالي</title>
+</head>
+<body>
+    <form class="addQuiz " method="post" enctype="multipart/form-data">
+        <input type="file" class="form-control" asp-for="@Model.File"  placeholder="ve" accept="application/pdf">
+        <input type="text" class="rounded-2 form-control" asp-for="@Model.Name" placeholder="File Name">
+        <button type="submit" asp-route-id="@ViewBag.id" id="saveButton" class="btn fw-bold">Save</button> <br />
+        @if(ViewBag.Suc != null)
+        {
+            @ViewBag.Suc 
+        }
+    </form>
+
+
+
+    <script src="~/js/pdf.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js.map"></script>
+</body>

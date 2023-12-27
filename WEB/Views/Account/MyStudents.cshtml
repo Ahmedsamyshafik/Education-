@@ -1,0 +1,134 @@
+﻿@* ---------------------------------------------------------------------------------------- *@
+
+@model IEnumerable<ApplicationUser>
+
+@using Microsoft.AspNetCore.Identity;
+@{
+	@inject UserManager<ApplicationUser> usermanager
+
+	ViewData["Title"] = "MyStudents";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="~/css/exam.css">
+	<link rel="stylesheet" href="~/css/edit.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="~/css/all.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<title>امتحانات الترم الاول</title>
+</head>
+<body>
+
+	<!-- عشان الادمن -->
+	<!-- الادمن -->
+	@{
+		bool x = false;
+		@if (User.Identity.IsAuthenticated)
+		{
+			var username = User.Identity.Name;
+			@if (username != null)
+			{
+				var user = await usermanager.FindByNameAsync(username);
+				@if (user != null)
+				{
+					var roles = await usermanager.IsInRoleAsync(user, Constans.roleAdmin);
+					x = roles;
+				}
+			}
+
+		}
+	}
+	@if (x)
+	{
+		<div class="add">
+			<div class="card ">
+				<img src="~/assets/images/Front/teacher.png" alt=" ">
+				<h3>MR.WAEL KABIL</h3>
+			</div>
+
+			<i class="fa-solid fa-circle-plus"></i>
+			<a asp-action="EditmyAcc" asp-controller="Account">تعديل الحساب</a>
+			<a asp-action="AddStudent" asp-controller="Account" target="_blank">إضافه طالب</a>
+			<a asp-action="AddAdmin" asp-controller="Account">إضافه أدمن</a>
+			<a asp-action="MyStudents" asp-controller="Account">طلاب الثانويه</a>
+			<a asp-action="OtherCoursesStudents" asp-controller="Course">طلاب الكورسات</a>
+			<a asp-action="AdminsAccounts" asp-controller="Account">الأدمنز </a>
+
+		</div>
+	}
+
+
+
+	<div class="listoftable container">
+		<form id="searchForm">
+			<label for="name" class="h2 ">Search by Name</label>
+			<input type="text" id="name" name="name" placeholder="Enter name...">
+
+			<select id="degree" name="degree" class="form-select m-auto my-2 rounded-3">
+				<option value="" disabled selected hidden>اختر الصف</option>
+				<option value="الأول" class="form-select">الصف الاول الثانوي</option>
+				<option value="الثاني">الصف الثاني الثانوي</option>
+				<option value="الثالث">الصف الثالث الثانوي</option>
+				<option value="أدمن">أدمن</option>
+
+			</select>
+
+
+			<input type="submit" value="Search" class="sub">
+		</form>
+
+		<table id="studentTable" class="table">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Degree</th>
+					<th scope="col">Role</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.Count() > 0)
+				{
+					<form method="post">
+						@for (var i = 0; i < Model.Count(); i++)
+						{
+						<tr>
+							<td>@Model.ElementAt(i).UserName</td>
+							<td>@Model.ElementAt(i).degree</td>
+							<td>
+								<input asp-for="@Model.ElementAt(i).IsInRole" name="Editedusers[@i].IsInRole" />
+							</td>
+							<td>
+								<a asp-action="Delete" asp-controller="Account" asp-route-id="@Model.ElementAt(i).Id.ToString()" class="btn btn-danger">Delete</a> | <a asp-action="EditAsAdmin" asp-controller="Account" asp-route-id="@Model.ElementAt(i).Id" class="btn btn-Suc">Edit</a>
+							</td>
+							<input asp-for="@Model.ElementAt(i).Id" name="Editedusers[@i].id" hidden>
+							<input asp-for="@Model.ElementAt(i).UserName" name="Editedusers[@i].UserName" hidden>
+							<input asp-for="@Model.ElementAt(i).degree" name="Editedusers[@i].degree" hidden>
+
+
+						</tr>
+						}
+					<button type="submit" class="btn savebtn border border-3 bg-body-secondary">Save</button>
+					</form>
+
+				}
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+
+
+
+
+	<script src="~/js/exam.js"></script>
+</body>
+</html>

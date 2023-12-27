@@ -1,0 +1,183 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --main-yellow: #fff480;
+    --main-red: #ff5757;
+    --main-orange: orange;
+    --main-white : #f4f2ef;
+    --main-border:8px
+}
+
+body{
+    /* font-family: 'Noto Sans Arabic', sans-serif; */
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+    
+    overflow: hidden;
+}
+.edit-parent{
+    margin: 10px;
+    overflow: hidden;
+}
+
+.edit-parent img{
+    z-index: -1;
+}
+
+.edit-parent h3{
+    color: var(--main-red);
+    text-align: center;
+}
+
+form{
+    text-align: center;
+}
+
+/* form div{
+    display: flex;
+} */
+
+form div input{
+    border: 2px solid var(--main-red);
+    border-radius: var(--main-border);
+    padding: 5px;
+    width: 100%;
+    outline: none;
+}
+
+
+.edit-parent .edit{
+    padding: 10px;
+    /* text-align: center; */
+}
+
+.edit label{
+    /* display: block; */
+   width: 200px;
+   font-size: 19px;
+}
+.form{
+    position: absolute;
+    top: 50%;
+    transform: translate(0px , -50%);
+    z-index: 100;
+}
+
+input::-webkit-input-placeholder{
+    color: #888;
+    float: right;
+    padding-right: 30px;
+}
+
+
+.edit-parent button{
+    padding: 5px 10px;
+    border: 2px solid var(--main-red);
+    border-radius: var(--main-border);
+    font-weight: bold;
+    cursor: pointer;
+    margin: 15px;
+}
+
+.edit-parent button:hover{
+    background-color: var(--main-red);
+    color: var(--main-white);
+    transition: 0.5s;
+}
+
+.edit-parent img{
+    position: absolute;
+width: 45%;
+left: 53%;
+top: 50%;
+transform: translate(0%, -50%);
+}
+
+.edit-parent .form{
+width: 50%;
+}
+
+.sele{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding: 10px;
+    gap: 13px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.sele select{
+    padding: 2px;
+    text-align: center;
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid var(--main-red);
+}
+/* 
+.sele select:focus,
+.sele select:active{
+    border: 2px solid var(--main-red);
+} */
+
+
+.image-about .logo,
+footer .logo{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.logo .name{
+    display: none;
+}
+
+
+  .about .logo .fa-facebook,
+footer .logo .fa-facebook{
+    color: #1877F2;
+    font-size: 25px;
+}
+  .about .logo .fa-youtube,
+footer .logo .fa-youtube{
+    color: #ff0000;
+    font-size: 25px;
+}
+  .about .logo .fa-whatsapp, footer .logo .fa-whatsapp{
+    color: #25D366;
+    font-size: 25px;
+}
+.about .text{
+    float: left;
+    max-width: 70%;
+}
+
+footer{
+    background-color: var(--main-yellow);
+    text-align: center;
+    padding: 3px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+footer h4:nth-child(2){
+    /* padding: 20px; */
+    color: var(--main-red);
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+footer .last{
+    font-size: 16px;
+}
+
+footer span:not(:last-child){
+    color: var(--main-red);
+}
+

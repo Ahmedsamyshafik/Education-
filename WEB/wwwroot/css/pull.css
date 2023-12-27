@@ -1,0 +1,147 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --main-yellow: #fff480;
+    --main-red: #ff5757;
+    --main-orange: orange;
+    --main-white : #fff;
+    --main-border:8px;
+    --main-body: #eee;
+}
+
+body{
+    /* font-family: 'Noto Sans Arabic', sans-serif; */
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+    background-color: #eee !important;
+}
+
+
+h4{
+    text-align: center;
+    padding: 15px;
+    font-size: xx-large;
+    text-transform: capitalize;
+}
+
+.pre{
+  background-color: var(--main-white);
+  padding: 20px;
+  border-radius: 10px;
+  /* box-shadow: 6px 6px 17px #dbd9d9; */
+  margin: 10px;
+}
+
+label,input{
+  cursor: pointer;
+}
+
+input[type="submit"],
+button.btn{
+  padding: 10px 20px !important;
+  border-radius: var(--main-border) !important;
+  border: 1px solid var(--main-red) !important;
+  margin: 20px 0px;
+}
+
+input[type="submit"]:hover,
+button.btn:hover{
+  background-color: var(--main-red);
+  color: var(--main-white);
+  transition: 0.5s;
+
+}
+
+.loader {
+    position: relative;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+
+    top: -0.4em;
+    border-radius: 25px;
+    z-index: -1;
+    text-align: center;
+}
+
+.loader .parent-load{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+  
+  .clock {
+    position: relative;
+    left: 0.05em;
+    width: 65px;
+  }
+  
+  .stage {
+    position: relative;
+    background-color: black;
+    width: 3em;
+    height: .4em;
+    border-radius: 15px;
+    box-shadow: 2px 2px 0px #666666;
+    z-index: 4;
+  }
+  
+  .hold {
+    position: relative;
+    background-color: limegreen;
+    width: 0.1em;
+    height: 4em;
+    top: -.25em;
+    animation: 2s dangle infinite;
+    box-shadow: 4px 4px 0px #666666;
+    z-index: -1;
+  }
+  
+  @keyframes dangle {
+    0% {
+      transform-origin: top center;
+      transform: rotate(45deg);
+    }
+  
+    50% {
+      transform-origin: top center;
+      transform: rotate(-45deg);
+    }
+  
+    100% {
+      transform-origin: top center;
+      transform: rotate(45deg);
+    }
+  }
+  
+  .ball {
+    display: inline-block;
+    position: relative;
+    top: 3em;
+    left: -9px;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0;
+    border-radius: 50%;
+    background: #171717;
+    box-shadow: 1px 1px 0px #666666;
+  }
+.container .parent-answer {
+    padding: 10px 0px;
+    border-bottom: 2px solid;
+    margin: 10px;
+}
+
+.parent-answer p {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+    .container .pre p,
+    .parent-answer p > span {
+        color: rgb(22 159 96);
+    }

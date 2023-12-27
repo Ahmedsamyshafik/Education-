@@ -1,0 +1,154 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model (CreditCourses creditCourse,List<CreditCourses> courses)
+@{
+	ViewData["Title"] = "CoursesPage";
+	@inject UserManager<ApplicationUser> usermanager
+	@inject WEB.IRepo.ICoursesNamesBLL Service
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>  متنوعات الترم الاول</title>
+	<link rel="stylesheet" href="~/css/edit.css">
+	<link rel="stylesheet" href="~/css/frist.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="~/css/all.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+
+</head>
+<body>
+
+
+
+	@{
+		var x = false;
+		var what = User.Identity.IsAuthenticated;
+		if (what)
+		{
+			var user = await usermanager.FindByNameAsync(User.Identity.Name);
+			if (user != null)
+			{
+				if (await usermanager.IsInRoleAsync(user, Constans.roleAdmin))
+				{
+					x = true;
+				}
+			}
+		}
+	}
+	@if (x)
+	{
+		<div class="add">
+			<i class="fa-solid fa-circle-plus"></i>
+			<form method="post" asp-action="AddCourse" enctype="multipart/form-data">
+				<input type="file" asp-for="@Model.creditCourse.img" name="creditCourse.img" class="form-control rounded-4 fileInput" placeholder="ve" accept="image/*" required>
+				<input type="text" asp-for="@Model.creditCourse.name" name="creditCourse.name" class="title " placeholder="Course Name" required>
+				<input type="text" class="price" asp-for="@Model.creditCourse.Price" name="creditCourse.price" placeholder="Price" required>
+				<input asp-for="@Model.creditCourse.imgPath" name="creditCourse.imgPath" hidden>
+				<input asp-for="@Model.creditCourse.join" name="creditCourse.join" hidden>
+				<button type="submit" class="btn"> Add IN Page</button>
+			</form>
+			<hr>
+			<a asp-action="EditeCourses" asp-controller="Course">تعديل الكورسات</a>
+		</div>
+	}
+
+
+
+	@if (ViewBag.Success != null)
+	{
+		<p style="color:red">@ViewBag.Success</p>
+	}
+	@if (ViewBag.request != null)
+	{
+		<p style="color:red">@ViewBag.request</p>
+	}
+	@if (ViewBag.Error != null)
+	{
+		<p style="color:red">  @ViewBag.Error</p>
+	}
+
+	<form method="post" asp-action="Request">
+		@if (Model.courses.Count() > 0)
+		{
+
+			<div class="container text-center">
+				<div class="lectures">
+					@for (var i = 0; i < Model.courses.Count(); i++)
+					{
+						<div class="one">
+							<div class="hov"></div>
+							<div class="title">
+								<a asp-action="CoursePage" asp-route-id="@Model.courses.ElementAt(i).id">
+									<div style="display: flex; flex-direction: row-reverse; justify-content: space-between; border-bottom: 2px solid var(--main-red);">
+										<h3 style="margin: 0px; width: fit-content; border: 0px;">@Model.courses.ElementAt(i).name</h3>
+										<p>@Model.courses.ElementAt(i).Price ج.م</p>
+									</div>
+
+									<p>اضغط هنا</p>
+								</a>
+							</div>
+							<div class="lable">
+
+								@if ((await usermanager.FindByNameAsync(User.Identity.Name)).joinCourse)
+								{
+									var k = Service.GetJoinedCourses(await usermanager.FindByNameAsync(User.Identity.Name), @Model.courses.ElementAt(i).name);
+									if (k.Count > 0)
+									{
+										foreach (var c in k)
+										{
+											if (c == @Model.courses.ElementAt(i).name)
+											{
+												<input asp-for="@Model.courses.ElementAt(i).join" name="courses[@i].join" checked>
+											}
+											else
+											{
+												<input asp-for="@Model.courses.ElementAt(i).join" name="courses[@i].join">
+
+											}
+										}
+									}
+									else
+									{
+										<input asp-for="@Model.courses.ElementAt(i).join" name="courses[@i].join">
+
+									}
+
+
+								}
+								@if ((await usermanager.FindByNameAsync(User.Identity.Name)).joinCourse == false)
+								{
+									<input asp-for="@Model.courses.ElementAt(i).join" name="courses[@i].join">
+								}
+
+								<input asp-for="@Model.courses.ElementAt(i).id" name="courses[@i].id" hidden>
+								<input asp-for="@Model.courses.ElementAt(i).name" name="courses[@i].name" hidden>
+
+							</div>
+
+							<img src="@Model.courses.ElementAt(i).imgPath" alt="" style="padding: 0;">
+						</div>
+					}
+				</div>
+			</div>
+
+			<button type="submit" class="btn savebtn border border-3 bg-body-secondary" id="saveButton">Enroll</button>
+		}
+
+
+	</form>
+
+
+
+
+
+	<script src="~/js/coll.js"></script>
+</body>
+</html>

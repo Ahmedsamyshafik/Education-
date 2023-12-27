@@ -1,0 +1,137 @@
+﻿@model (List<AccessToVideo> Videos, AccessToVideo Video)
+@using Microsoft.AspNetCore.Identity;
+@{
+	@inject UserManager<ApplicationUser> usermanager
+
+	ViewData["Title"] = "CoursePage";
+}
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="~/css/edit.css">
+	<link rel="stylesheet" href="~/css/frist.css">
+	<link rel="stylesheet" href="~/css/exam.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="~/css/all.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<title>فيدوهات</title>
+</head>
+<body>
+
+
+	<nav class="menu">
+		<input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" placeholder="..">
+		<label class="menu-open-button" for="menu-open">
+			<span class="lines line-1"></span>
+			<span class="lines line-2"></span>
+			<span class="lines line-3"></span>
+		</label>
+
+		<a asp-action="DisplayPdfs" asp-route-id="@ViewBag.id" target="_blank" class="menu-item gray"> <i class="fa-regular fa-file-pdf"></i> </a>
+		<a asp-action="AddQuiz" asp-route-id="@ViewBag.id" target="_blank" class="menu-item gray"> <i class="fa-solid fa-pen"></i> </a>
+		<a asp-action="AddPdf" asp-route-id="@ViewBag.id" target="_blank" class="menu-item gray"> <i class="fa-solid fa-person-circle-question"></i></a>
+		<a asp-action="DisplayQuizes" asp-route-id="@ViewBag.id" target="_blank" class="menu-item gray"><i class="fa-solid fa-file-lines"></i></a>
+	</nav>
+
+
+	@if (User.Identity.IsAuthenticated)
+	{
+		string name = User.Identity.Name;
+		if (name != null || name != string.Empty)
+		{
+			var Cuser = await usermanager.FindByNameAsync(name);
+			if (Cuser != null)
+			{
+				var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+				if (userrole)
+				{
+					<div class="add">
+						<i class="fa-solid fa-circle-plus text-dark"></i>
+						<form method="post" asp-action="AddVideo">
+							<div>
+								<input asp-for="@Model.Video.Link" name="video.link" class="link" placeholder="write Your link" required>
+								<input type="text" asp-for="@Model.Video.Name" name="video.name" class="title" placeholder="write Your Title" required>
+								<input type="text" asp-for="@Model.Video.Description" name="video.description" class="pragraph" placeholder="write Your Description" required>
+								<input asp-for="@Model.Video.Id" name="video.id" value="@ViewBag.id" hidden />
+								<button type="submit" id="saveButton" class="btn"> Add IN Page</button>
+							</div>
+						</form>
+					
+
+					</div>
+
+				}
+			}
+		}
+	}
+
+
+	@if (Model.Videos.Count() > 0)
+	{
+		<div id="videoContainer">
+			<form method="post" asp-action="DeleteVid">  
+			@for (var i = 0; i < Model.Videos.Count(); i++)
+			{
+
+				<div class="links">
+					<h1>@Model.Videos.ElementAt(i).Name</h1>
+					<p>@Model.Videos.ElementAt(i).Name</p>
+
+					<button onclick="openVideo('@Model.Videos.ElementAt(i).Link')">Open Video</button>
+				</div>
+				@if (User.Identity.IsAuthenticated)
+				{
+					string name = User.Identity.Name;
+					if (name != null || name != string.Empty)
+					{
+						var Cuser = await usermanager.FindByNameAsync(name);
+						if (Cuser != null)
+						{
+							var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+							if (userrole)
+							{
+
+								<input asp-for="@Model.Videos.ElementAt(i).Id" name="pdfs[@i].Id" hidden>
+
+
+								<div>
+									@{
+										string delete = ViewBag.id.ToString() + ',' + Model.Videos.ElementAt(i).Id.ToString();
+										<button asp-action="DeleteVid" class="btn bg-danger" asp-route-id="@delete">Delete</button>
+									}
+								</div>
+
+							}
+						}
+					}
+				}
+
+
+			}
+			</form>
+		</div>
+
+	}
+
+
+	<script>
+		let menu = document.querySelector(".menu-open-button");
+		menu.addEventListener("click", function () {
+			let x = document.querySelector(".menu")
+			x.classList.toggle("toggle");
+
+		})
+
+
+	</script>
+
+
+
+	<script src="~/js/coll-vedio.js"></script>
+</body>

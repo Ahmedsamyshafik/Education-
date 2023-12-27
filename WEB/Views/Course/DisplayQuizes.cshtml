@@ -1,0 +1,132 @@
+﻿
+@model (List<CoursesNames> Quezies , List<UsersQuiz> userQuizes )
+@using Microsoft.AspNetCore.Identity;
+@{
+    @inject UserManager<ApplicationUser> usermanager
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/exam.css">
+    <link rel="stylesheet" href="~/css/edit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <title>امتحانات الترم الاول</title>
+</head>
+<body>
+
+   
+
+    <div class="scroll">
+        <i class="fa-solid fa-arrow-down-long scrolling"></i>
+    </div>
+
+    <a asp-action="Correcting" class="btn btn-danger">تصحيح المقالي</a>
+
+    <div id="quizLinks" class="container">
+        <form method="post" asp-action="QuizAccess">
+
+            @if (Model.Quezies.Count() > 0)
+            {
+                for (var i = 0; i < Model.Quezies.Count(); i++)
+                {
+                    <div class="quiz">
+                        <h3>@Model.Quezies[i].Name</h3>
+
+                        <input asp-for="@Model.Quezies[i].Name" name="Quizes[@i].Title" hidden />
+
+                        <input asp-for="@Model.Quezies[i].Id" name="Quizes[@i].Id" hidden />
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            string name = User.Identity.Name;
+                            if (name != null || name != string.Empty)
+                            {
+                                var Cuser = await usermanager.FindByNameAsync(name);
+                                if (Cuser != null)
+                                {
+                                    var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+                                    if (userrole)
+                                    {
+                                        <th>
+                                            <input asp-for="@Model.Quezies.ElementAt(i).Id" name="Quezies[@i].Id" hidden>
+                                        </th>
+
+                                        <th>
+                                            @{
+                                                string delete = ViewBag.id.ToString() + ',' + Model.Quezies.ElementAt(i).Id.ToString();
+
+                                            }
+                                            <button asp-action="DeleteQuiz" class="btn bg-danger" asp-route-id="@delete">Delete</button>
+
+                                        </th>
+                                    }
+                                }
+                            }
+                        }
+
+                        <a asp-action="ToTakeQuiz" asp-route-id="@Model.Quezies.ElementAt(i).Id" asp-route-ids="@ViewBag.id">Click</a>
+
+
+                    </div>
+                }
+            }
+        </form>
+
+
+
+    </div>
+
+
+
+
+
+    <div class="listoftable container">
+        <form id="searchForm">
+            <label for="name" class="h2 ">Search by Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter name...">
+
+         
+           
+              
+            
+
+            <input type="submit" value="Search" class="sub">
+        </form>
+
+        <table id="studentTable" class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Exam Name</th>
+                    <th scope="col">Exam Degree</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.userQuizes.Count() > 0)
+                {
+                    @for (int i = 0; i < Model.userQuizes.Count(); i++)
+                    {
+                        <tr>
+                            <td>@Model.userQuizes.ElementAt(i).UserName</td>
+                            <td>@Model.userQuizes.ElementAt(i).ExamName</td>
+                            <td>@Model.userQuizes.ElementAt(i).ExamDegree / @Model.userQuizes.ElementAt(i).MaxDegree  </td>
+                        </tr>
+                    }
+                }
+
+
+
+                <!-- Add more rows here -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script src="~/js/exam.js"></script>
+</body>

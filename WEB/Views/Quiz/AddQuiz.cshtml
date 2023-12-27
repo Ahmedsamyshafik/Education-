@@ -1,0 +1,75 @@
+﻿@model QuizTable
+@{
+    ViewData["Title"] = "AddQuiz";
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/edit.css"> -->
+    <link rel="stylesheet" href="~/css/exam.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <title>Create Quiz</title>
+</head>
+<body>
+
+    <div class="create">
+        <h1>Create Quiz</h1>
+        <form method="post" action="">
+            <div class="form-group">
+                <div class="sele p-3">
+
+                    <select class="form-select mx-auto" asp-for="@Model.Alldegrees" aria-label="Default select example"
+                            name="alldegrees" asp-items="Html.GetEnumSelectList<Alldegrees>()">
+                        <option selected disabled hidden>اختر الصف</option>
+                    </select>
+                </div>
+                <div class="sele p-3">
+                <select class="form-select mx-auto" asp-for="@Model.Semester" aria-label="Default select example"
+                        name="Semester" asp-items="Html.GetEnumSelectList<Semester>()"> 
+                    <option selected disabled hidden>اختر الصف</option>
+                </select>
+                </div>
+                <label for="title">Title:</label>
+                <input type="text" asp-for="@Model.Title" id="title" name="title" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" asp-for="@Model.Description" name="description" class="form-control" required></textarea>
+            </div>
+            <h3>Question 1:</h3>
+            <div id="questionsContainer">
+                <div class="question">
+                    <div class="form-group">
+                        <label for="question1">Question:</label>
+                        <input type="text" id="question1" name="Questions[0].Text" class="form-control" required />
+                    </div>
+                    <div class="form-group2">
+                        <label for="option1">Options:</label>
+                        <input type="text" id="option1" name="Questions[0].Options[0].Text" class="form-control" required />
+                        <input type="text" id="option2" name="Questions[0].Options[1].Text" placeholder=".." class="form-control" required />
+                        <input type="text" id="option2" name="Questions[0].Options[2].Text" placeholder=".." class="form-control" required />
+                        <input type="text" id="option2" name="Questions[0].Options[3].Text" placeholder=".." class="form-control" required />
+
+                        <!-- Add more options as needed -->
+                    </div>
+                    <div class="form-group">
+                        <label for="correctAnswer1">Correct Answer:</label>
+                        <input type="number" id="correctAnswer1" name="Questions[0].CorrectAnswer" class="form-control" required />
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="addQuestionBtn" class="btn btn-primary">Add Question</button>
+            <button type="button" id="removeQuestion" class="btn btn-primary">Remove Question</button>
+            <button type="button" id="AddOption" class="btn btn-primary">Add Option</button>
+            <button type="submit" class="btn btn-primary" id="createQuizBtn">Create Quiz</button>
+        </form>
+    </div>
+    <script src="~/js/examMcq.js"></script>
+</body>

@@ -1,0 +1,17 @@
+﻿@model UsersQuiz
+@{
+	ViewData["Title"] = "DisplayPdf";
+}
+@{
+	<h1>DisplayPdf</h1>
+
+	if (Model.StudentFile.Contains(".pdf"))
+	{
+		<embed src="@Model.StudentFile" type="application/pdf" width="100%" height="800px">
+		<br>
+	}
+}
+// if studentFile=> pdf =>
+or photo =>> new Code .. Like Vid Code
+
+

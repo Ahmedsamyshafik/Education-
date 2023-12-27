@@ -1,0 +1,147 @@
+﻿@model IEnumerable<CoursesNames>
+@using Microsoft.AspNetCore.Identity;
+
+@{
+	ViewData["Title"] = "OtherCoursesStudents";
+	@inject UserManager<ApplicationUser> usermanager
+
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="~/css/exam.css">
+	<link rel="stylesheet" href="~/css/edit.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="~/css/all.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<title>امتحانات الترم الاول</title>
+</head>
+<body>
+
+	<!-- عشان الادمن -->
+	<!-- الادمن -->
+	@{
+		bool x = false;
+		@if (User.Identity.IsAuthenticated)
+		{
+			var username = User.Identity.Name;
+			@if (username != null)
+			{
+				var user = await usermanager.FindByNameAsync(username);
+				@if (user != null)
+				{
+					var roles = await usermanager.IsInRoleAsync(user, Constans.roleAdmin);
+					x = roles;
+				}
+			}
+
+		}
+	}
+	@if (x)
+	{
+		<div class="add">
+			<div class="card ">
+				<img src="~/assets/images/Front/teacher.png" alt=" ">
+				<h3>MR.WAEL KABIL</h3>
+			</div>
+
+			<i class="fa-solid fa-circle-plus"></i>
+			<a asp-action="EditmyAcc" asp-controller="Account">تعديل الحساب</a>
+			<a asp-action="AddStudent" asp-controller="Account" target="_blank">إضافه طالب</a>
+			<a asp-action="AddAdmin" asp-controller="Account">إضافه أدمن</a>
+			<a asp-action="MyStudents" asp-controller="Account">طلاب الثانويه</a>
+			<a asp-action="OtherCoursesStudents" asp-controller="Course">طلاب الكورسات</a>
+			<a asp-action="AdminsAccounts" asp-controller="Account">الأدمنز </a>
+
+		</div>
+	}
+
+
+
+
+
+
+
+	<div class="listoftable container">
+		<form id="searchForm">
+			<label for="name" class="h2 ">Search by Name</label>
+			<input type="text" id="name" name="name" placeholder="Enter name...">
+
+			<input type="submit" value="Search" class="sub">
+		</form>
+
+		<form method="post">
+			<table id="studentTable" class="table">
+				<thead>
+					<tr>
+						<th scope="col">الاسم</th>
+						<th scope="col">الكورس</th>
+						<th scope="col">ايمكانيه الوصول </th>
+						<th></th>
+
+					</tr>
+				</thead>
+				<tbody>
+
+					@if (Model.Count() > 0)
+					{
+						@for (var i = 0; i < Model.Count(); i++)
+						{
+							<tr>
+								<td>
+									@if(await usermanager.FindByIdAsync(@Model.ElementAt(i).UserId) == null){
+										<p>No User</p>
+									}
+									else
+									{
+										@await usermanager.FindByIdAsync(@Model.ElementAt(i).UserId)
+
+									}
+								</td>
+								<td>
+									@Model.ElementAt(i).Name
+									<input asp-for="@Model.ElementAt(i).Id" name="courses[@i].id" hidden>
+									<input asp-for="@Model.ElementAt(i).UserId" name="courses[@i].userid" hidden>
+
+								<td><input asp-for="@Model.ElementAt(i).Access" name="courses[@i].Access"></td>
+								<td>
+									<a asp-action="DeleteStd" asp-controller="Course" asp-route-id="@Model.ElementAt(i).Id" class="btn btn-danger">Delete</a> | <a asp-action="EditAsAdminForCourses" asp-controller="Account" asp-route-id="@Model.ElementAt(i).Id" class="btn btn-Suc">Edit</a>
+								</td>
+							</tr>
+
+						}
+
+						<button type="submit" class="btn savebtn border border-3 bg-body-secondary" >Save</button>
+
+						<!-- Add more rows here -->
+					}
+				</tbody>
+			</table>
+		</form>
+
+
+
+
+
+
+
+
+
+	</div>
+
+
+
+	<script src="~/js/exam.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "Course";
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/edit.css">
+    <link rel="stylesheet" href="~/css/frist.css">
+    <link rel="stylesheet" href="~/css/exam.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <title>فيديوهات</title>
+</head>
+<body>
+    <nav class="menu">
+        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" placeholder="..">
+        <label class="menu-open-button" for="menu-open">
+            <span class="lines line-1"></span>
+            <span class="lines line-2"></span>
+            <span class="lines line-3"></span>
+        </label>
+
+        <a href="pdfuser.html" target="_blank" class="menu-item gray"> <i class="fa-regular fa-file-pdf"></i> </a>
+        <a href="mcqAdmin-coll.html" target="_blank" class="menu-item gray"> <i class="fa-solid fa-pen"></i> </a>
+        <a href="mcqAnswer.html" target="_blank" class="menu-item gray"> <i class="fa-solid fa-person-circle-question"></i></a>
+        <a href="pdfAnswer.html" target="_blank" class="menu-item gray"><i class="fa-solid fa-file-lines"></i></a>
+    </nav>
+
+
+    <div class="add">
+        <i class="fa-solid fa-circle-plus text-dark"></i>
+        <div>
+            <input type="url" class="link" id="fileInput" placeholder="write Your link" required>
+            <input type="text" id="fileNameInput" class="title" placeholder="write Your Title" required>
+            <input type="text" class="pragraph" placeholder="write Your Description" required>
+            <button type="button" id="saveButton" class="btn"> Add IN Page</button>
+        </div>
+    </div>
+
+    <div id="videoContainer">
+    </div>
+
+    <script>
+        let menu = document.querySelector(".menu-open-button");
+        menu.addEventListener("click", function () {
+            let x = document.querySelector(".menu")
+            x.classList.toggle("toggle");
+
+        })
+    </script>
+    <script src="~/js/coll-vedio.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+</body>

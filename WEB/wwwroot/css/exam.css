@@ -1,0 +1,339 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --main-yellow: #fff480;
+    --main-red: #ff5757;
+    --main-orange: orange;
+    --main-white : #fff;
+    --main-border:8px
+}
+
+
+
+
+body{
+    /* font-family: 'Noto Sans Arabic', sans-serif; */
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+    background-color: #eee !important; 
+}
+.create {
+    text-align: center;
+    padding: 30px;
+    background-color: #eee;
+}
+.create h1{
+    color: var(--main-red);
+    padding: 10px;
+    /* user-select: none; */
+}
+
+.create input,
+.create textarea,
+.create select{
+    width: 88%;
+    padding: 10px;
+    border-radius: 17px;
+    text-align: center;
+    border: none;
+    margin: 10px auto;
+    outline: none;
+    
+}
+
+.create input:focus,
+.create input:active{
+    /* border: 2px solid var(--main-red); */
+    outline: none;
+}
+
+.create input::-webkit-input-placeholder{
+    /* text-align: center; */
+    float: none;
+}
+
+.create button{
+    padding: 10px 15px;
+    border: none;
+    font-weight: bold;
+    
+    border: 2px solid var(--main-red);
+
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 11px;
+    z-index: 100;
+}
+
+
+.scrolling{
+    position: absolute;
+    right: 0;
+    padding: 20px;
+    cursor: pointer;
+    color: var(--main-red);
+    font-size: 23px;
+}
+
+.buttonss{
+    position: absolute;
+    right: 4px;
+    top: 86px;
+    z-index: 100;
+    text-align: center;
+}
+
+.dropdownn>a{
+    border: 2px solid var(--main-red) !important;
+    background-color: #eee;
+    border-radius: 0.9em;
+    padding: 10px 20px;
+    font-weight: bold;
+    width: 195px;
+    margin-bottom: 5px;
+}
+
+.dropdownn ul{
+    width: 100%;
+}
+
+.toAdd{
+    padding: 10px 15px;
+    
+    margin-bottom: 5px;
+    font-weight: bold;
+    width: 106px !important;
+    width: 195px !important;
+
+}
+
+.cssbuttons-io-button {
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 18px;
+
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    right: -3px;
+    height: 2.8em;
+    padding-right: 3.3em;
+    z-index: 100;
+    border: 2px solid var(--main-red);
+    font-weight: bold;
+
+}
+
+.cssbuttons-io-button .icon {
+
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  background-color: var(--main-red);
+  right: 0.3em;
+  transition: all 0.5s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+.cssbuttons-io-button:hover {
+  background-color: var(--main-red);
+  color: white;
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.5s;
+  color: white;
+
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+
+.toAdd,
+.create button{
+    border: 2px solid var(--main-red);
+    border-radius: 0.9em;
+    background-color: #eee;
+    color: black;
+    outline: none;
+    z-index: 100;
+    
+
+}
+
+
+
+.toAdd:hover,
+.create button:hover{
+    background-color: var(--main-red);
+    border: 1px solid var(--main-red);
+    transition: 0.5s;
+    color: white;
+}
+
+form{
+    text-align: center;
+    padding: 20px 0px;
+}
+
+label,
+input{
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 0px;
+}
+
+input{
+    border: 1px solid red;
+    padding: 10px 15px;
+    border-radius: 11px;
+    outline: none;
+}
+select, .sub{
+    cursor: pointer;
+}
+
+.sub:hover{
+    background-color: var(--main-red);
+    color: white;
+    transition: 0.5s;
+}
+
+#degree
+{
+    border: 1px solid var(--main-red);
+}
+#degree:hover,
+#degree:focus,
+#degree:active
+{
+    box-shadow: none;
+    outline: none;
+}
+
+.listoftable{
+    
+    width: 100%;
+    margin: 0;
+    
+}
+
+.listoftable table{
+    margin: 0;
+}
+
+#searchForm{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.second{
+    font-weight: bold;
+    border-radius: var(--main-border);
+    cursor: pointer;
+    margin: 11px;
+    text-decoration: none;
+    color: black;
+    /* background-color: #eeee; */
+}
+
+.second:hover{
+    background-color: var(--main-red);
+    color: var(--main-white);
+    transition: 0.5s;
+}
+
+#quizLinks{
+    display: grid;
+    justify-content: end;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+}
+
+#quizLinks .quiz{
+    text-align: center;
+    background-color: var(--main-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 6px 6px 17px #dbd9d9;
+    margin: 10px;
+}
+#quizLinks .quiz:hover{
+    box-shadow: 13px 14px 10px #c6c5c5ee;
+    transition: 0.5s;
+    transform: scale(1.04);
+}
+
+.quiz a{
+    text-transform: capitalize;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid var(--main-red);
+    color: var(--main-red);
+    margin: auto;
+    display: block;
+    width: 56px;
+}
+
+.quiz a:hover{
+    background-color: var(--main-red);
+    color: #fff;
+    transition: 0.5s;
+}
+
+.quiz p{
+    margin: 0;
+}
+
+
+
+.scroll{
+    text-align: center;
+}
+
+.scroll i{
+    position: fixed;
+    bottom: 50px;
+    background-color: #888;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    color: white;
+    cursor: pointer;
+    z-index: 100;
+}
+
+
+
+.scroll i:hover{
+    background-color: var(--main-red);
+    transition: 0.5s;
+
+
+}

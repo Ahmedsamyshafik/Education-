@@ -1,0 +1,158 @@
+﻿@model (PdfMaterial pdf , List<PdfMaterial> pdfs )
+@using Microsoft.AspNetCore.Identity;
+@{
+	@inject UserManager<ApplicationUser> usermanager
+
+	ViewData["Title"] = "Index2";
+}
+
+
+<head>
+
+	<title> PDF الترم الثاني</title>
+	<link rel="stylesheet" href="~/css/pdf.css">
+	<link rel="stylesheet" href="~/css/edit.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="~/css/all.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css.map">
+</head>
+
+
+<body>
+	@if (ViewBag.id != 3)
+	{
+	<button class="cssbuttons-io-button">
+		الترم الأول
+		<div class="icon">
+			<a asp-action="Index" asp-route-id="@ViewBag.id" style="width: 100%; height: 100%;" class="d-flex justify-content-center align-items-center">
+				<svg height="24"
+					 width="24"
+					 viewBox="0 0 24 24"
+					 xmlns="http://www.w3.org/2000/svg">
+					<path d="M0 0h24v24H0z" fill="none"></path>
+					<path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+						  fill="currentColor"></path>
+				</svg>
+			</a>
+
+		</div>
+	</button>
+	}
+
+
+
+	@if (User.Identity.IsAuthenticated)
+	{
+		string name = User.Identity.Name;
+		if (name != null || name != string.Empty)
+		{
+			var Cuser = await usermanager.FindByNameAsync(name);
+			if (Cuser != null)
+			{
+				var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+				if (userrole)
+				{
+					<div class="add">
+						<i class="fa-solid fa-circle-plus"></i>
+						<form method="post" asp-action="AddPdf" enctype="multipart/form-data">
+							<input type="file" asp-for="@Model.pdf.File" name="pdf.file" class="form-control rounded-2" placeholder="ve" accept="application/pdf">
+							<input type="text" asp-for="@Model.pdf.Name" name="pdf.name" class="rounded-2 form-control" placeholder="File Name">
+
+							<div class="sele">
+								<select id="degree" asp-for="@Model.pdf.alldegrees" name="pdf.alldegrees" aria-placeholder="bob" class="form-select my-2 mx-auto border  shadow-none p-2" asp-items="Html.GetEnumSelectList<Alldegrees>()" style="padding: 2px; text-align: center; ">
+									<option value="" disabled selected hidden>أختر الصف</option>
+								</select>
+								<span asp-validation-for="@Model.pdf.alldegrees" class="text-danger"></span>
+							</div>
+							<br />
+							<div class="sele">
+								<select id="degree" asp-for="@Model.pdf.Semester" name="pdf.semester" aria-placeholder="bob" class="form-select my-2 mx-auto border  shadow-none p-2" asp-items="Html.GetEnumSelectList<Semester>()" style="padding: 2px; text-align: center; ">
+									<option value="" disabled selected hidden>أختر الترم</option>
+								</select>
+								<span asp-validation-for="@Model.pdf.Semester" class="text-danger"></span>
+							</div>
+
+
+							<button id="saveButton" type="submit">Save</button>
+						</form>
+
+					</div>
+
+				}
+			}
+		}
+	}
+
+
+
+	<div class="container">
+		<h2>Table Of PDFs</h2>
+		@if (Model.pdfs.Count() > 0)
+		{
+			<table id="pdfTable" border="1">
+				<form method="post" asp-action="PdfAccess">
+					@for (var i = 0; i < Model.pdfs.Count(); i++)
+					{
+
+					<tr>
+						<th>
+							<a asp-action="DisplayPDf" asp-route-id="@Model.pdfs.ElementAt(i).Id">@Model.pdfs.ElementAt(i).Name</a>
+						</th>
+							@if (User.Identity.IsAuthenticated)
+							{
+								string name = User.Identity.Name;
+								if (name != null || name != string.Empty)
+								{
+									var Cuser = await usermanager.FindByNameAsync(name);
+									if (Cuser != null)
+									{
+										var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+										if (userrole)
+										{
+										<th>
+											<input asp-for="@Model.pdfs[i].Access" name="pdfs[@i].Access">
+											<input asp-for="@Model.pdfs[i].Id" name="pdfs[@i].Id" hidden>
+										</th>
+
+										<th>
+											<button asp-action="DeletePdf" class="btn bg-danger" asp-route-id="@Model.pdfs.ElementAt(i).Id">Delete</button>
+										</th>
+										}
+									}
+								}
+							}
+
+
+					</tr>
+					}
+					@if (User.Identity.IsAuthenticated)
+					{
+						string name = User.Identity.Name;
+						if (name != null || name != string.Empty)
+						{
+							var Cuser = await usermanager.FindByNameAsync(name);
+							if (Cuser != null)
+							{
+								var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+								if (userrole)
+								{
+								<button class="btn savebtn border border-3 bg-body-secondary">Save</button>
+
+								}
+							}
+						}
+					}
+				</form>
+			</table>
+
+		}
+
+	</div>
+
+	<script src="~/js/pdf.js"></script>
+	@* <script src="~/js/bootstrap.bundle.min.js"></script> *@
+</body>

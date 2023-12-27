@@ -1,0 +1,62 @@
+﻿@model ApplicationUser
+@{
+	ViewData["Title"] = "EditAsAdmin";
+}
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="~/css/edit-prof.css">
+	<link rel="stylesheet" href="~/css/edit.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="~/css/all.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<title>تعديل</title>
+</head>
+<body>
+
+	<div class="edit-parent">
+		<img src="~/assets/images/Front/photo-login.jpg" alt="">
+		<div class="form">
+			<h3> تعديل</h3>
+			<form method="post">
+				@if (ViewBag.ErrorMessage != null)
+				{
+					<p>@ViewBag.ErrorMessage</p>
+				}
+				<div class="edit">
+					<!-- <label for="name">Name</label> -->
+					<input type="text" asp-for="@Model.UserName" name="UserName" id="name" placeholder="الاسم" disabled>
+					<input asp-for="@Model.UserName" name="UserName" hidden />
+				</div>
+
+				<div class="edit">
+					<!-- <label for="name">Name</label> -->
+					<input type="text" asp-for="@Model.PhoneNumber" name="PhoneNumber" id="phone" placeholder="رقم الهاتف">
+				</div>
+
+				<div class="edit">
+					<!-- <label for="newpass">New Passoword</label> -->
+					<input type="password" name="PasswordHash" asp-for="@Model.PasswordHash" id="newpass" placeholder="كلمة السر الجديدة">
+				</div>
+
+				<button type="submit">Save</button>
+
+			</form>
+		</div>
+	</div>
+
+
+	@section Scripts {
+		@{
+			await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		}
+	}
+</body>
+
+
+

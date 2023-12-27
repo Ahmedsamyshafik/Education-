@@ -1,0 +1,65 @@
+﻿@model QuizTable
+@{
+    ViewData["Title"] = "AddQuiz";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/edit.css"> -->
+    <link rel="stylesheet" href="~/css/exam.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <title>Create Quiz</title>
+</head>
+<body>
+    <div class="create">
+        <h1>Create Quiz</h1>
+        <form method="post" >
+            <input asp-for="@Model.Id" hidden />
+
+            <div class="form-group">
+                <div class="sele p-3">
+
+      
+
+                    <a asp-action="AddWreiiterQuiz" asp-route-id="@ViewBag.id" class="btn btn-danger border">اضافه امتحان مقالي</a>
+                </div>
+                <label for="title">Title:</label>
+                <input type="text" asp-for="@Model.Title" name="Title" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea asp-for="@Model.Description" name="Description" class="form-control" required></textarea>
+            </div>
+            <h3>Question 1:</h3>
+            <div id="questionsContainer">
+                <div class="question">
+                    <div class="form-group">
+                        <label for="question1">Question:</label>
+                        <input type="text" id="question1" name="Questions[0].Text" class="form-control" required />
+                    </div>
+                    <div class="form-group2">
+                        <label for="option1">Options:</label>
+                        <input type="text" id="option1" name="Questions[0].Options[0].Text" class="form-control" required />
+                        <input type="text" id="option2" name="Questions[0].Options[1].Text" placeholder=".." class="form-control" required />
+                        <!-- Add more options as needed Add 2 more  -->
+                    </div>
+                    <div class="form-group">
+                        <label for="correctAnswer1">Correct Answer:</label>
+                        <input type="number" id="correctAnswer1" name="Questions[0].CorrectAnswer" class="form-control" required />
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="addQuestionBtn" class="btn ">Add Question</button>
+            <button type="button" id="removeQuestion" class="btn ">Remove Question</button>
+            <button type="button" id="AddOption" class="btn ">Add Option</button>
+            <button type="submit" asp-route-Id="@ViewBag.id" class="btn " id="createQuizBtn">Create Quiz</button>
+        </form>
+    </div>
+    <script src="~/js/examMcq.js"></script>
+</body>

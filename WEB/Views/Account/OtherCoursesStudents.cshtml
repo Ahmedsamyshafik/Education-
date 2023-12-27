@@ -1,0 +1,124 @@
+﻿@{
+	ViewData["Title"] = "MyStudents";
+}
+
+
+@* @model IEnumerable<ApplicationUser>*@
+
+
+<style>
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	th, td {
+		padding: 8px;
+		text-align: left;
+		border-bottom: 1px solid #ddd;
+	}
+
+	input[type=text] {
+		width: 150px;
+		padding: 5px;
+	}
+
+	select {
+		padding: 5px;
+	}
+
+	input[type=submit] {
+		padding: 5px 10px;
+		background-color: #4CAF50;
+		color: white;
+		border: none;
+		cursor: pointer;
+	}
+</style>
+</>
+<body>
+
+	<form id="searchForm">
+		<label for="name">Search by Name:</label>
+		<input type="text" id="name" name="name" placeholder="Enter name...">
+
+		<label for="degree">Search by Degree:</label>
+		<select id="degree" name="degree">
+			<option value="">All</option>
+			<option value="one">One</option>
+			<option value="two">Two</option>
+			<option value="three">Three</option>
+			<option value="four">Four</option>
+			<option value="five">Five</option>
+		</select>
+
+		<input type="submit" value="Search">
+	</form>
+
+	<table id="studentTable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Degree</th>
+				<th>Role</th>
+			</tr>
+		</thead>
+		<tbody>
+			@* 	@for (var i = 0; i < Model.Count(); i++)
+			{
+			<tr>
+			<td>
+			@Model.ElementAt(i).UserName
+			</td>
+			<td>
+			@Model.ElementAt(i).degree
+			</td>
+			<td>
+			@Model.ElementAt(i).IsInRole
+			</td>
+			</tr>
+			} *@
+			<!-- Add more rows here -->
+		</tbody>
+	</table>
+
+	<script>
+		const form = document.getElementById('searchForm');
+		const table = document.getElementById('studentTable');
+
+		form.addEventListener('input', function (e) {
+			const nameInput = document.getElementById('name');
+			const degreeInput = document.getElementById('degree');
+
+			const nameFilter = nameInput.value.toLowerCase();
+			const degreeFilter = degreeInput.value.toLowerCase();
+
+			const rows = table.getElementsByTagName('tr');
+
+			for (let i = 1; i < rows.length; i++) {
+				const name = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
+				const degree = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+
+				if ((nameFilter === '' || name.includes(nameFilter)) &&
+					(degreeFilter === '' || degree === degreeFilter)) {
+					rows[i].style.display = '';
+				} else {
+					rows[i].style.display = 'none';
+				}
+			}
+		});
+	</script>
+
+	@if (ViewBag.SuccessMessage != null)
+	{
+		<h3>ViewBag.S</h3>
+	}
+	@if (ViewBag.ErrorMessage != null)
+	{
+		<h3>
+			ViewBag.ErrorMessage
+		</h3>
+	}
+
+</body>
+<a asp-action="Edit">Edit?</a>

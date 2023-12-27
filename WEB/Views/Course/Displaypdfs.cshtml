@@ -1,0 +1,87 @@
+﻿@model List<PdfMaterial>
+@using Microsoft.AspNetCore.Identity;
+@{
+	@inject UserManager<ApplicationUser> usermanager
+
+	ViewData["Title"] = "Displaypdfs";
+}
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> PDF </title>
+	<link rel="stylesheet" href="~/css/pdf.css">
+	<link rel="stylesheet" href="~/css/edit.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="~/css/all.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css.map">
+</head>
+<body>
+
+
+
+
+
+
+
+
+	<div class="container">
+		<h2>Table Of PDFs</h2>
+		@if (Model.Count() > 0)
+		{
+			<table id="pdfTable" border="1">
+				<form asp-action="DeletePdf">
+					@for (var i = 0; i < Model.Count(); i++)
+					{
+
+					<tr>
+						<th>
+							<a asp-action="DisplayPDf" target="_blank" asp-route-id="@Model.ElementAt(i).Id">@Model.ElementAt(i).Name</a>
+						</th>
+							@if (User.Identity.IsAuthenticated)
+							{
+								string name = User.Identity.Name;
+								if (name != null || name != string.Empty)
+								{
+									var Cuser = await usermanager.FindByNameAsync(name);
+									if (Cuser != null)
+									{
+										var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+										if (userrole)
+										{
+										<th>
+											<input asp-for="@Model.ElementAt(i).Id" name="pdfs[@i].Id" hidden>
+										</th>
+
+											<th>
+												@{
+													string delete = ViewBag.id.ToString() + ','+Model.ElementAt(i).Id.ToString();
+												
+												}
+											<button asp-action="DeletePdf" class="btn bg-danger" asp-route-id="@delete">Delete</button>
+
+										</th>
+										}
+									}
+								}
+							}
+
+
+					</tr>
+					}
+				</form>
+			</table>
+
+		}
+
+	</div>
+
+	<script src="~/js/pdf.js"></script>
+	<script src="~/js/bootstrap.bundle.min.js"></script>
+</body>
+

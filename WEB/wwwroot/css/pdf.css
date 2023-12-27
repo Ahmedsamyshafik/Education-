@@ -1,0 +1,236 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+}
+.cssbuttons-io-button {
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 86px;
+    height: 2.8em;
+    padding-right: 3.3em;
+    z-index: 100;
+    font-weight: bold;
+    border: 2px solid var(--main-red);
+}
+
+.cssbuttons-io-button .icon {
+
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  background-color: var(--main-red);
+  right: 0.3em;
+  transition: all 0.5s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+.cssbuttons-io-button:hover {
+  background-color: var(--main-red);
+  color: white;
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.5s;
+  color: white;
+
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+.second{
+    font-weight: bold;
+    border-radius: var(--main-border);
+    cursor: pointer;
+    margin: 11px;
+    text-decoration: none;
+    color: black;
+    /* background-color: #eeee; */
+}
+
+.second:hover{
+    background-color: var(--main-red);
+    color: var(--main-white);
+    transition: 0.5s;
+}
+:root{
+    --main-yellow: #fff480;
+    --main-red: #ff5757;
+    --main-orange: orange;
+    --main-white : #f4f2ef;
+    --main-border:8px
+}
+.pdf{
+    margin:60px auto ;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+table{
+    width: 80%;
+    margin: auto;
+}
+
+h2{
+    text-align: center;
+    padding: 15px;
+}
+
+table tr {
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center
+}
+
+table tr:not(:last-child){
+    margin-bottom: 8px;
+}
+tr td a {
+    text-decoration: none;
+    font-size: 20px;
+    text-transform: capitalize;
+    color: var(--main-red);
+}
+
+table tr:hover{
+    background-color: #d9d9d9;
+}
+.form-select{
+    width: 88% !important;
+    border: none !important;
+    outline: none !important;
+}
+
+
+.add{
+    position: fixed;
+    width: 30% !important;
+    height: 100%;
+    background-color: #888;
+    text-align: center;
+    transition: 0.6s;
+    left: -30%;
+    top: 0;
+    width: 410px;
+    z-index: 100;
+}
+
+
+.add.active{
+    left: 0;
+}
+
+.add .fa-circle-plus{
+    position: absolute;
+    right: -35px;
+    padding: 10px;
+    background-color: inherit;
+    top: 60px;
+    cursor: pointer;
+}
+
+.add input{
+    width: 88%;
+    padding: 10px;
+    border-radius: 17px;
+    text-align: center;
+    border: none;
+    margin: 10px auto;
+    outline: none;
+    
+}
+
+
+.addQuiz{
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.addQuiz input:focus,
+.addQuiz select{
+    box-shadow: none;
+    border: 1px solid var(--main-red);
+}
+
+
+.addQuiz input,
+.addQuiz select{
+    padding: 10px !important;
+    margin: 10px auto !important;
+    width: 90% !important;
+}
+
+
+
+
+.addQuiz #saveButton {
+    border: 1px solid var(--main-red);
+    margin: 10px;
+}
+.addQuiz #saveButton:hover {
+   background-color: var(--main-red);
+   transition: 0.5s;
+   color: white;
+  
+}
+
+.add input::-webkit-input-placeholder{
+    /* text-align: center; */
+    float: none;
+}
+
+.add button{
+    padding: 10px 15px;
+    border: none;
+    font-weight: bold;
+    
+    border: 2px solid var(--main-red);
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 11px;
+}
+
+.add button:hover{
+    color: white;
+        background: var(--main-red);
+
+}
+
+@media (max-width:600px){
+    .add{
+        width: 70% !important;
+        left: -70%;
+    }
+}

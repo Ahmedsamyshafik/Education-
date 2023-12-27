@@ -1,0 +1,159 @@
+﻿
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="~/css/edit.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="stylesheet" href="~/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css.map">
+	<title>Master Academy</title>
+</head>
+<body>
+
+	<!-- adminnnnn -->
+
+
+
+	<div class="bg-body-tertiary show-animation">
+		<div class="container animation">
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+				<div class="container-fluid">
+					@if (!User.Identity.IsAuthenticated)
+					{
+						<div class="ml-auto bttn login">
+							<a asp-action="login" asp-controller="account" class="btn my-2 my-sm-0 border-0 tr">تسجيل الدخول</a>
+						</div>
+					}
+					else
+					{
+							<div class="ml-auto bttn login">
+							<a asp-action="index" asp-controller="account" class="btn my-2 my-sm-0 border-0 tr">  @User.Identity.Name مرحبا</a>
+						</div>
+					}
+					
+					<button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse ml-auto justify-content-center link" id="navbarText">
+						<ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0 align-items-lg-center">
+							<li class="nav-item">
+
+								<div class="dropdown">
+									<a class="btn btn-light border mx-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="fa-solid fa-file-pdf "></i>
+									</a>
+
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" asp-action="index" asp-route-id="1" asp-controller="pdf">الصف الاول الثانوي</a></li>
+										<li><a class="dropdown-item" asp-action="index" asp-route-id="2" asp-controller="pdf"> الصف الثاني الثانوي</a></li>
+										<li><a class="dropdown-item" asp-action="index" asp-route-id="3" asp-controller="pdf"> الصف الثالث الثانوي </a></li>
+									</ul>
+								</div>
+
+							</li>
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="btn btn-light border mx-1  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="fa-solid fa-book"></i>
+									</a>
+
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" asp-action="index" asp-route-id="1" asp-controller="Quiz">الصف الاول الثانوي</a></li>
+										<li><a class="dropdown-item" asp-action="index" asp-route-id="2" asp-controller="Quiz"> الصف الثاني الثانوي</a></li>
+										<li><a class="dropdown-item" asp-action="index" asp-route-id="3" asp-controller="Quiz"> الصف الثالث الثانوي </a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="btn btn-light border mx-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="fa-solid fa-user-large"></i>
+									</a>
+
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" asp-action="EditmyAcc" asp-controller="Account"> تعديل البروفايل </a></li>
+										@if (User.Identity.IsAuthenticated)
+										{
+										<li><a class="dropdown-item" asp-action="LogOut" asp-controller="Account">   تسجيل الخروج</a></li>
+										
+
+										}
+
+									</ul>
+								</div>
+							</li>
+
+						
+						</ul>
+
+						<a class="navbar-brand d-none d-lg-block" asp-action="index" asp-controller="home">
+							<img src="~/assets/images/Front/vector-background remove.png" alt="Logo" />
+						</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+	</div>
+
+
+	@RenderBody()
+
+
+
+
+
+
+
+
+
+
+	<footer>
+		<div>
+			<div class="logo">
+				<a href="https://www.facebook.com/wael.kabil.94">
+					<i class="fa-brands fa-facebook"></i>
+					<span class="name">facebook</span>
+				</a>
+
+				<a href="https://www.youtube.com/mrwaelkabeel4086">
+					<i class="fa-brands fa-youtube"></i>
+					<span class="name">youtube</span>
+				</a>
+
+				<a href="">
+					<i class="fa-brands fa-whatsapp"></i>
+					<span class="name">whatsapp</span>
+				</a>
+			</div>
+			@* <h4> Developed By: Mohamed zidan, Ahmed samy </h4> *@
+			<h4 class="last"> All Copy Rights Reserved  <span class="year"></span></h4>
+		</div>
+	</footer>
+
+
+
+
+	<!-- <script src="js/all.min.js"></script> -->
+</body>
+
+<script src="~/js/code.js"></script>
+<script src="~/js/pdf.js"></script>
+<script src="~/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+@await RenderSectionAsync("Scripts", required: false)
+</html>
+
+
+

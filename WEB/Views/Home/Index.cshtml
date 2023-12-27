@@ -1,0 +1,175 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@{
+	@inject UserManager<ApplicationUser> usermanager
+	ViewData["Title"] = "Home Page";
+}
+
+
+
+
+<!-- adminnnnn -->
+@{
+	bool x = false;
+	@if (User.Identity.IsAuthenticated)
+	{
+		var username = User.Identity.Name;
+		@if (username != null)
+		{
+			var user = await usermanager.FindByNameAsync(username);
+			@if (user != null)
+			{
+				var roles = await usermanager.IsInRoleAsync(user, Constans.roleAdmin);
+				x = roles;
+			}
+		}
+		
+	}
+}
+@if (x)
+{
+	<div class="add">
+		<div class="card ">
+			<img src="~/assets/images/Front/sss.png" alt=" ">
+			<h3>Teacher AS/MZ</h3>
+		</div>
+
+		<i class="fa-solid fa-circle-plus"></i>
+		<a asp-action="EditmyAcc" asp-controller="Account">تعديل الحساب</a>
+		<a asp-action="AddStudent" asp-controller="Account" target="_blank">إضافه طالب</a>
+		<a asp-action="AddAdmin" asp-controller="Account">إضافه أدمن</a>
+		<a asp-action="MyStudents" asp-controller="Account">طلاب الثانويه</a>
+		<a asp-action="OtherCoursesStudents" asp-controller="Course">طلاب الكورسات</a>
+		<a asp-action="AdminsAccounts" asp-controller="Account">الأدمنز </a>
+
+	</div>
+}
+
+
+
+
+
+<!-- backgroud and image teacher -->
+
+
+
+
+
+
+<div class="image-text">
+	<!-- Main Photo -->
+	<img src="~/assets/images/Front/fon-3.png" alt="" />
+</div>
+
+<!-- المحاضرات -->
+<div class="container ">
+	<div class="lectures">
+		<h1>اختر الصف</h1>
+		<div class="one">
+			<img src="~/assets/images/Front/اولي.jpg" alt="">
+			<!-- <i class="fa-brands fa-leanpub"></i> -->
+			<div class="hov"></div>
+			<div class="title">
+				<a asp-action="Index" asp-route-id="1" asp-controller="Video">
+					<h3>الصف الاول الثانوي</h3>
+					<p>اضغط هنا</p>
+				</a>
+			</div>
+		</div>
+		<div class="one">
+			<!-- <i class="fa-brands fa-leanpub"></i> -->
+			<img src="~/assets/images/Front/اولي.jpg" alt="">
+			<!-- <i class="fa-brands fa-leanpub"></i> -->
+			<div class="hov"></div>
+			<div class="title">
+
+				<a asp-action="index" asp-route-id="2" asp-controller="Video">
+					<h3>الصف الثاني الثانوي</h3>
+					<p>اضغط هنا</p>
+				</a>
+
+			</div>
+		</div>
+		<div class="one">
+			<img src="~/assets/images/Front/اولي.jpg" alt="">
+			<!-- <i class="fa-brands fa-leanpub"></i> -->
+			<div class="hov"></div>
+			<!-- <i class="fa-brands fa-leanpub"></i> -->
+			<div class="title">
+				<a asp-action="index" asp-route-id="3" asp-controller="Video">
+					<h3>الصف الثالث الثانوي</h3>
+					<p>اضغط هنا</p>
+				</a>
+
+			</div>
+		</div>
+		<div class="one">
+			<img src="~/assets/images/Front/اولي.jpg" alt="">
+			<!-- <i class="fa-brands fa-leanpub"></i> -->
+			<div class="hov"></div>
+			<!-- <i class="fa-brands fa-cloudversify"></i> -->
+			<div class="title">
+				<a asp-action="CoursesPage" asp-route-id="4" asp-controller="Course">
+					<h3>كورسات متنوعة</h3>
+					<p>اضغط هنا</p>
+				</a>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container ">
+	<div class="mm">
+		<img src="~/assets/images/Front/اولي.jpg" alt="">
+		<!-- <i class="fa-brands fa-leanpub"></i> -->
+		<div class="hov"></div>
+		<!-- <i class="fa-brands fa-cloudversify"></i> -->
+		<div class="title">
+			<a asp-action="FreeVideos" asp-controller="Video">
+				<h3> مقتطفات</h3>
+				<p>اضغط هنا</p>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="about">
+	<div class="container">
+
+		<h3>عن أ/ ...</h3>
+		<div class="image-about">
+			<!-- About Photo -->
+			<img src="~/assets/images/Front/teacher.jpg" alt="image">
+
+
+			<p>مدرس  خبير  ...</p>
+			<i class="bi bi-whatsapp"></i>
+			<div class="logo">
+				<a href="">
+					<i class="fa-brands fa-facebook"></i>
+					<span class="name">facebook</span>
+				</a>
+
+				<a href="">
+					<i class="fa-brands fa-youtube"></i>
+					<span class="name">youtube</span>
+				</a>
+
+				<a href="">
+					<i class="fa-brands fa-whatsapp"></i>
+					<span class="name">whatsapp</span>
+				</a>
+			</div>
+		</div>
+		<p class="text">الأستاذ (احمد سامي و محمد زيدان) مُعلِّم أول ..: تخرَّج في كُلية الحاسبات بتقدير امتياز مع مرتبة الشرف، خبرة واحد وثلاثين عامًا في تدريس البرمجه قام بتدريس مناهج الثَّانوية العامة باختلاف أشكالِها. صاحب مقوله كمل متقفش . أوَّل من لُقِّب بصانع الأوائل لأنه لا يخلو عامٌ بفضل الله إلا وعنده عدد من الأوائل.</p>
+	</div>
+</div>
+
+
+
+
+
+
+<!-- <script src="js/all.min.js"></script> -->

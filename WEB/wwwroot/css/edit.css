@@ -1,0 +1,833 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --main-yellow: #fff480;
+    --main-red: #ff5757;
+    --main-orange: orange;
+    --main-white : #fff;
+    --main-border:8px
+
+}
+
+body{
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+
+}
+
+
+.container{
+    max-width: 1170px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: auto;
+}
+
+/* header and login */
+
+.bttn,
+.bttn:active,
+.bttn:focus{
+    outline:1px solid var(--main-red);
+    border-radius: var(--main-border);
+
+}
+
+.link ul li a:active,
+.link ul li a:hover,
+.link ul li div,
+.link ul li a:focus{
+    color: var(--main-red);
+}
+
+nav .navbar-toggler:focus{
+    box-shadow: none;
+}
+
+.container .btn:hover{
+    background-color: var(--main-red) !important;
+    color: var(--main-white);
+    border: 3px solid var(--main-red) !important;
+    transition: 0.1s;
+}
+.btn:active{
+    outline: 1px solid red;
+}
+
+.bttn:hover
+{
+    background-color: var(--main-red);
+    color: var(--main-white);
+    transition: 0.5s;
+}
+
+ 
+
+input,
+input:focus,
+input:active{
+    box-shadow: none !important;
+}
+.navbar-brand img{
+    width: 100px;
+    height: 50px;
+}
+
+.header .header-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-content .login{
+    background-color: var(--main-red);
+    color: var(--main-white);
+    padding: 10px 20px;
+    border-radius: var(--main-border);
+    cursor: pointer;
+}
+
+/* image and logo after header */
+.image-text{
+    position: relative;
+}
+.image-text img{
+    width: 100%;
+    /* background-image: url(../images/fon.png); */
+}
+
+.image-text::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(28 26 31/15%);
+    z-index: 2;
+}
+
+/* .image-text .right {
+    text-align: center;
+    float: right;
+    padding: 10px;
+    text-align: center;
+}
+
+.image-text .right img{
+    width: 500px;
+}
+
+.right h2{
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.image-text .left {
+    text-align: center;
+    float: left;
+}
+
+.left img{
+    width: 400px;
+    position: relative;
+} */
+
+/* login */
+
+
+
+/* lectures */
+
+.sele{
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    /* align-items: center; */
+    justify-content: start;
+    outline: none;
+    position: relative;
+}
+
+.sele select{
+    padding: 2px 5px;
+    border: 1px solid var(--main-red);
+    border-radius: 11px;
+    cursor: pointer;
+    outline:none;
+    padding: 2px;
+    text-align: center;
+    width: 100%;
+
+}
+
+
+
+
+/* .sele select option select{
+    background-color: var(--main-red);
+} */
+
+.sele:hover .icon i {
+    color: var(--main-white);
+    transition: 0.5s;
+}
+.sele .icon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+.sele~option {
+    background-color: var(--main-red);
+    color: var(--main-white); /* Text color */
+    font-family: Arial, sans-serif; /* Font family */
+    font-size: 14px; /* Font size */
+    padding: px 10px; /* Padding */
+    cursor: pointer;
+}
+
+/* .sele option:hover{
+    background-color: var(--main-red);
+} */
+
+/* animation  */
+
+.container .animation{
+    transform: translateX(-100%);
+    transition: 2s;
+}
+
+.container.show-animation .animation{
+    transform: translateX(0);
+
+}
+
+.container .lectures h1{
+    /* padding-top: 50px; */
+    padding-bottom: 10px;
+    width: 100%;
+    font-size: 30px;
+    color: var(--main-red);
+    border-bottom: 2px solid var(--main-orange);
+    text-align: center;
+}
+
+.lectures {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row-reverse;
+    padding: 60px 0 40px;
+    border-bottom: 2px solid var(--main-orange);
+   
+}
+
+/* .lectures .one{
+    width: 100%;
+    height: 352px;
+    background-image: url(../images/اولي.jpg);
+    background-size: cover;
+    top: 0;
+    margin-bottom: 80px;
+    position: relative;
+} */
+.lectures .one,
+.excerpts{
+    
+    height: 200px;
+    position: relative;
+    text-align: center;
+    border-radius: var(--main-border);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    
+}
+
+.one a{
+    text-decoration: none;
+    color: black;
+    
+    
+}
+
+
+
+.lectures .one{
+    margin-right: 2%;
+    margin-top: 25px;
+    border: 1px solid #adb5bd;
+    margin-bottom: 60px;
+    box-shadow: 8px 8px 10px #dee2e6, -8px -8px 10px #dee2e6;
+
+}
+
+.one:hover .hov,
+.mm:hover .hov{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(0,0,3,.6);
+    background-attachment: fixed;
+    transition: 0.6s;
+    border-radius: var(--main-border);
+    padding: 5px;
+
+}
+
+.one:hover,
+.mm:hover{
+    transform: scale(1.04);
+    transition: all .5s;
+    box-shadow: 0px 15px 10px #dbdbdb;
+}
+
+.mm:hover .title{
+    box-shadow: 0px 5px 10px #888;
+}
+
+
+.mm a{
+    text-decoration: none;
+    color: black;
+}
+
+
+
+/* .lectures .one i{
+    font-weight: 400;
+    font-size: 60px;
+    color: var(--main-orange);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+.lectures .one h3,
+.mm .title h3{
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+    margin: 0;
+    width: 95%;
+    margin: auto;
+    border-bottom: 2px solid var(--main-red);
+}
+title a{
+    border-bottom: 2px solid var(--main-red);
+
+}
+.title p{
+    margin-top: 0;
+    margin: 0;
+    font-size: 17px;
+    padding: 10px;
+    color: var(--main-red);
+}
+
+
+.lectures .one img{
+    width: 100%;
+    height: 100%;
+    /* transform: translateY(45%); */
+    border-radius: var(--main-border);
+    padding: 20px;
+}
+
+
+.one .title,
+.mm .title{
+    position: absolute;
+    bottom: -84px;
+    right: 1.5%;
+    background-color: var(--main-yellow);
+    width: 97%;
+    padding: 8px;
+    text-align: right;
+    font-size: 25px;
+    border-radius: var(--main-border);
+    margin-bottom: 20px;
+
+    
+}
+
+
+/* .one .title:hover{
+    border-bottom: 3px solid var(--main-orange);
+    border-left: 3px solid var(--main-orange);
+    border-right: 3px solid var(--main-orange);
+} */
+
+
+/* excerpts div */
+.mm{
+    max-width: 400px;
+    height: 300px;
+    text-align: center;
+    position: relative;
+    margin: 30px auto 98px;
+    border: 1px solid #adb5bd;
+    border-radius: var(--main-border);
+    box-shadow: 8px 8px 10px #dee2e6, -8px -8px 10px #dee2e6;
+    /* overflow: hidden; */
+    padding: 10px;
+
+}
+
+.mm img{
+    width: 100%;
+    height: auto;
+    margin: 20% auto;
+
+}
+
+.about{
+    padding-top: 60px;
+    padding-bottom: 30px;
+    text-align: -webkit-center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse ;
+    background-color: #eee;
+    margin-top: 60px;
+}
+
+.about .container{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.about h3{
+    text-align: center;
+    font-size: 35px;
+    width: 100%;
+    padding: 30px 0;
+    /* border-top: 2px solid var(--main-orange); */
+}
+.about .image-about{
+    float: right;
+    margin-left: 15px;
+    width: 25%;
+}
+
+/* .image-about p{
+    text-align: center;
+    width: 70%;
+} */
+
+.image-about .logo,
+footer .logo{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.logo .name{
+    display: none;
+}
+
+
+  .about .logo .fa-facebook,
+footer .logo .fa-facebook{
+    color: #1877F2;
+    font-size: 25px;
+}
+  .about .logo .fa-youtube,
+footer .logo .fa-youtube{
+    color: #ff0000;
+    font-size: 25px;
+}
+  .about .logo .fa-whatsapp, footer .logo .fa-whatsapp{
+    color: #25D366;
+    font-size: 25px;
+}
+.about .text{
+    float: left;
+    max-width: 70%;
+}
+
+footer{
+    background-color: var(--main-yellow);
+    text-align: center;
+    padding: 3px;
+}
+
+footer h4:nth-child(2){
+    /* padding: 20px; */
+    color: var(--main-red);
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+footer .last{
+    font-size: 16px;
+}
+
+footer span:not(:last-child){
+    color: var(--main-red);
+}
+
+
+
+
+
+
+
+/* media querey */
+@media (max-width:767px) {
+    .lectures .one {
+        width: calc(100% / 1);
+        
+    }
+
+    .container .image-about {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    .about h3{  
+        text-align: center;
+    }
+    .header-content .login{
+        padding: 6px;
+    }
+
+    .header .container{
+        /* padding-left: 5px; */
+        padding: 0px 0px 0px 15px;
+    }
+
+    
+
+    .collection{
+        grid-template-columns: repeat(1 , 1fr);  
+    }
+
+    #videoContainer .childVideo{
+        display: block;
+        
+    }
+   
+    
+}
+
+@media (max-width:768px)  {
+    /* .lectures .one {
+        width: calc(92% / 2);
+    } */
+
+    .container .image-about {
+        width: 100%;
+
+    }
+
+    .about .text{
+        margin-top: 10px;
+        float: none;
+    }
+
+    .container .about{
+        /* display: flex; */
+        justify-content: center;
+        /* align-items: center; */
+    }
+    .about h3 {
+        text-align: center;
+    }
+
+    
+    
+    
+}
+
+
+
+
+@media (min-width:576px) /*and (orientation: landscape)*/{
+    .container{
+        max-width: 540px;
+
+    }
+
+    .collection{
+        grid-template-columns: repeat(2 , 1fr);  
+    }
+   
+    
+}
+
+@media (min-width:768px){
+    .container{
+        max-width: 720px;
+        
+    }
+    /* .header ul{
+        display: none;
+    } */
+    .lectures .one{
+        width: calc(92% / 2);
+    }
+
+    .collection{
+        grid-template-columns: repeat(3 , auto);
+        
+    }
+
+    
+}
+
+@media (min-width:992px){
+    .container{
+        max-width: 960px;
+    }
+
+    .lectures .one{
+        width: calc(92% / 3);
+    }
+
+    .collection{
+        grid-template-columns: repeat(3 , auto);
+        
+    }
+}
+
+@media (min-width:1200px){
+    .container{
+        max-width: 1140px
+    }
+
+    .lectures .one{
+        width: calc(92% / 4);
+    }
+
+    .collection{
+        grid-template-columns: repeat(4 , auto);  
+    }
+    
+}
+
+
+/* collection */
+
+.collection img{
+    width: 150px;
+    border-radius: var(--main-border);
+}
+
+.collection a:hover,
+.collection a:active,
+.collection a:focus{
+    transform: scale(1.04);
+    box-shadow: 0px 5px 10px #888;
+}
+
+.title:hover , 
+.one:hover .title{
+    box-shadow: 0px 5px 10px #888;
+}
+
+.collection{
+    display: grid;
+    /* grid-template-columns: repeat(4 , auto); */
+    justify-content: center;
+
+    
+}
+
+.collection a
+{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    background-color: var(--main-red);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.collection h3{
+    max-width: 300px;
+    text-align: center;
+    background-color: var(--main-yellow);
+    padding: 5px;
+    border-radius: var(--main-border);
+    line-height: 1.5;
+    font-size: 18px;
+}
+
+
+
+.add.active{
+    left: 0;
+}
+
+.add .fa-circle-plus{
+    position: absolute;
+    right: -35px;
+    padding: 10px;
+    background-color: inherit;
+    top: 60px;
+    cursor: pointer;
+}
+
+.add input{
+    width: 88%;
+    padding: 10px;
+    border-radius: 17px;
+    text-align: center;
+    border: none;
+    margin: 10px auto;
+    outline: none;
+    
+}
+
+.add input:focus{
+    border: 2px solid var(--main-red);
+}
+
+.add input::-webkit-input-placeholder{
+    /* text-align: center; */
+    float: none;
+}
+
+.add button{
+    padding: 10px 15px;
+    border: none;
+    font-weight: bold;
+    
+    border: 2px solid var(--main-red);
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 11px;
+}
+
+.add button:hover{
+    color: white;
+        background: var(--main-red);
+
+}
+
+.add{
+    position: fixed;
+    width: 30% !important;
+    height: 100%;
+    background-color: #888;
+    text-align: center;
+    transition: 0.6s;
+    left: -30%;
+    top: 0;
+    width: 410px;
+    z-index: 100;
+}
+
+.add.active{
+    left: 0;
+}
+
+.add .fa-circle-plus{
+    position: absolute;
+    right: -35px;
+    padding: 10px;
+    background-color: inherit;
+    top: 60px;
+    cursor: pointer;
+}
+
+.add a{
+    text-transform: capitalize;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--main-red);
+    display: block;
+    background-color: #eee;
+    margin: 5px;
+    border-radius: 14px;
+    
+}
+
+.add a:focus{
+    border: 2px solid var(--main-red);
+}
+
+
+
+
+
+.add a:hover{
+    color: white;
+    background: var(--main-red);
+    transition: 0.5s;
+
+}
+
+@media (max-width:600px){
+    .add{
+        width: 70% !important;
+        left: -70%;
+    }
+}
+
+.add .card{
+    background: transparent;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 19px;
+    gap: 20px;
+    border-bottom: 2px solid;
+    border-radius: 0;
+}
+
+.add .card img{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.add .card h3{
+    margin: 0;
+    font-size: 18px;
+    color: white;
+}
+.error404 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+    .error404 h1 {
+        font-size: 130px;
+        color: var(--main-red);
+    }
+
+    .error404 a {
+        color: var(--main-red);
+        text-decoration: none;
+    }

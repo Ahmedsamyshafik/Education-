@@ -1,0 +1,168 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model List<CreditCourses>
+
+@{
+	@inject UserManager<ApplicationUser> usermanager
+	@inject WEB.IRepo.ICoursesNamesBLL Service
+
+	ViewData["Title"] = "EditeCourses";
+}
+<div class="listoftable container">
+
+	<table id="studentTable" class="table">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Price</th>
+				<th scope="col">Photo</th>
+				<th scope="col">Upload Photo</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@if (Model.Count() > 0)
+			{
+				<form method="post" enctype="multipart/form-data" >
+					@for (var i = 0; i < Model.Count(); i++)
+					{
+					<tr>
+						<td>
+							<input asp-for="@Model.ElementAt(i).name" name="Courses[@i].name" />
+						</td>
+						<td>
+							<input asp-for="@Model.ElementAt(i).Price" name="Courses[@i].Price" />
+						</td>
+						<td>
+
+							<img src="@Model.ElementAt(i).imgPath"  name="Courses[@i].imgPath" style="width: 130px; height: auto;">
+
+							<input asp-for="@Model.ElementAt(i).imgPath" name="Courses[@i].imgPath" hidden />
+							<input asp-for="@Model.ElementAt(i).id" name="Courses[@i].id" hidden />
+							<input asp-for="@Model.ElementAt(i).join" name="Courses[@i].join" hidden>
+							<input asp-for="@Model.ElementAt(i).Date" name="Courses[@i].Date" hidden>
+						
+						</td>
+
+						<td>
+							<input asp-for="@Model.ElementAt(i).img" name="Courses[@i].img" />
+
+						</td>
+						<td>
+								 <a asp-action="DeleteCourse" asp-controller="Course" asp-route-id="@Model.ElementAt(i).id.ToString()" class="btn btn-danger">Delete</a>  
+						</td>
+
+
+
+					</tr>
+					}
+				<button type="submit" class="btn savebtn border border-3 bg-body-secondary">Save</button>
+				</form>
+
+			}
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <form method="post" asp-action="Request">
+	@if (Model.Count() > 0)
+	{
+
+		<div class="container text-center">
+			<div class="lectures">
+				@for (var i = 0; i < Model.Count(); i++)
+				{
+					<div class="one">
+						<div class="hov"></div>
+						<div class="title">
+							<a asp-action="CoursePage" asp-route-id="@Model.ElementAt(i).id">
+								<div style="display: flex; flex-direction: row-reverse; justify-content: space-between; border-bottom: 2px solid var(--main-red);">
+									<h3 style="margin: 0px; width: fit-content; border: 0px;">@Model.ElementAt(i).name</h3>
+									<p>@Model.ElementAt(i).Price ج.م</p>
+								</div>
+
+								<p>اضغط هنا</p>
+							</a>
+						</div>
+						<div class="lable">
+
+							@if ((await usermanager.FindByNameAsync(User.Identity.Name)).joinCourse)
+							{
+								var k = Service.GetJoinedCourses(await usermanager.FindByNameAsync(User.Identity.Name), @Model.ElementAt(i).name);
+								if (k.Count > 0)
+								{
+									foreach (var c in k)
+									{
+										if (c == @Model.ElementAt(i).name)
+										{
+											<input asp-for="@Model.ElementAt(i).join" name="courses[@i].join" checked>
+										}
+										else
+										{
+											<input asp-for="@Model.ElementAt(i).join" name="courses[@i].join">
+
+										}
+									}
+								}
+								else
+								{
+									<input asp-for="@Model.ElementAt(i).join" name="courses[@i].join">
+
+								}
+
+
+							}
+							@if ((await usermanager.FindByNameAsync(User.Identity.Name)).joinCourse == false)
+							{
+								<input asp-for="@Model.ElementAt(i).join" name="courses[@i].join">
+							}
+
+							<input asp-for="@Model.ElementAt(i).id" name="courses[@i].id" hidden>
+							<input asp-for="@Model.ElementAt(i).name" name="courses[@i].name" hidden>
+
+						</div>
+
+						<img src="@Model.ElementAt(i).imgPath" alt="" style="padding: 0;">
+					</div>
+				}
+			</div>
+		</div>
+
+		<button type="submit" class="btn savebtn border border-3 bg-body-secondary" id="saveButton">Enroll</button>
+	}
+
+
+</form>
+ *@

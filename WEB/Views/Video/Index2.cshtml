@@ -1,0 +1,107 @@
+﻿@model (AccessToVideo video,List<AccessToVideo> videos)
+
+@{
+    ViewData["Title"] = "Index2";
+}
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  الترم الاول</title>
+    <link rel="stylesheet" href="~/css/edit.css">
+    <link rel="stylesheet" href="~/css/frist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css.map">
+
+
+</head>
+<body>
+
+    <!-- Second Term -->
+
+
+    <button class="cssbuttons-io-button">
+        الترم الأول
+
+        <div class="icon">
+            <a asp-action="index" asp-route-id="@ViewBag.id" class="d-flex justify-content-center align-items-center"  style="width: 100%; height: 100%;">
+                <svg height="24"
+                     width="24"
+                     viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                          fill="currentColor"></path>
+                </svg>
+            </a>
+
+        </div>
+    </button>
+
+    @if (ViewBag.vidSuccess != null)
+    {
+        <p style="color:red">@ViewBag.vidSuccess</p>
+    }
+    <div class="add">
+        <i class="fa-solid fa-circle-plus"></i>
+        <form method="post" asp-action="AddVideo">
+
+            <input asp-for="@Model.video.Link" name="video.Link" class="link" placeholder="write Your link">
+            <input type="text" asp-for="@Model.video.Name" name="video.Name" class="title" placeholder="write Your Title">
+            <input type="text" class="pragraph" asp-for="@Model.video.Description" name="video.Description" placeholder="write Your Description">
+           
+            <select class="form-select mx-auto" asp-for="@Model.video.Degree" aria-label="Default select example"
+                    name="video.degree" asp-items="Html.GetEnumSelectList<Alldegrees>()">
+                <option selected disabled hidden>اختر الصف</option>
+            </select>
+            <br />
+            <select class="form-select mx-auto" asp-for="@Model.video.Semester" aria-label="Default select example"
+                    name="video.Semester" asp-items="Html.GetEnumSelectList<Semester>()">
+                <option selected disabled hidden>اختر الصف</option>
+            </select>
+
+            <button type="submit" id="saveButton" class="btn"> Add IN Page</button>
+        </form>
+    </div>
+
+    <div id="videoContainer">
+        @if (Model.videos.Count() > 0)
+        {
+            @for (var i = 0; i < Model.videos.Count(); i++)
+            {
+                <div class="links">
+                    <h1>@Model.videos.ElementAt(i).Name</h1>
+                    <div>
+                        <input type="checkbox" asp-for="@Model.videos.ElementAt(i).Access" id="num1" placeholder="..">
+                        <label for="num1" asp-for="@Model.videos.ElementAt(i).Description">  </label>
+                    </div>
+                    <button onclick="openVideo('@Model.videos.ElementAt(i).Link')">Open Video</button>
+                </div>
+
+
+            }
+        }
+    </div>
+    <script>
+        document
+            .querySelector(".cssbuttons-io-button")
+            .addEventListener("click", function () {
+                // Open the div in another page
+                // window.open("second.html");
+            });
+
+    </script>
+    <script src="~/js/first.js"></script>
+</body>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+	}

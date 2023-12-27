@@ -1,0 +1,127 @@
+﻿@model (List<FreeCourses> Displayvideos, FreeCourses  AddVid)
+
+@using Microsoft.AspNetCore.Identity;
+@{
+	@inject UserManager<ApplicationUser> usermanager
+
+	ViewData["Title"] = "FreeVideos";
+}
+
+
+
+
+<head>
+
+	<link rel="stylesheet" href="~/css/edit.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jomhuria&family=Noto+Sans+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="~/css/all.min.css">
+	<!-- <link rel="stylesheet" href="css/bootstrap.min.css">  -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css.map">
+
+
+	<title>كورسات متنوعة</title>
+</head>
+<body>
+	@if (Model.Displayvideos.Count() > 0)
+	{
+		<form method="post" asp-action="DeleteVideo">
+			<div class="collection container ">
+
+				@for (var i = 0; i < Model.Displayvideos.Count(); i++)
+				{
+					<a href="@Model.Displayvideos.ElementAt(i).Link" name="videos.link">
+						<img src="~/assets/images/Front/youtube2.png" alt="photo">
+						<h3>@Model.Displayvideos.ElementAt(i).Name</h3>
+					</a>
+
+					<input asp-for="@Model.Displayvideos" name="videos" hidden />
+					<input asp-for="@Model.Displayvideos.ElementAt(i).Id" name="videos.id" hidden />
+
+					<input asp-for="@Model.Displayvideos.ElementAt(i).Name" name="videos.name" hidden />
+					@if (User.Identity.IsAuthenticated)
+					{
+						string name = User.Identity.Name;
+						if (name != null || name != string.Empty)
+						{
+							var Cuser = await usermanager.FindByNameAsync(name);
+							if (Cuser != null)
+							{
+								var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+								if (userrole)
+								{
+									<input type="checkbox" asp-for="@Model.Displayvideos.ElementAt(i).Delete" name="videos.Delete" />
+
+								}
+							}
+						}
+					}
+
+				}
+			</div>
+			@if (User.Identity.IsAuthenticated)
+			{
+				string name = User.Identity.Name;
+				if (name != null || name != string.Empty)
+				{
+					var Cuser = await usermanager.FindByNameAsync(name);
+					if (Cuser != null)
+					{
+						var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+						if (userrole)
+						{
+							<button type="submit" class="btn savebtn border border-3 bg-body-secondary">Done</button>
+
+						}
+					}
+				}
+			}			
+		</form>
+	}
+
+
+
+
+	@if (User.Identity.IsAuthenticated)
+	{
+		string name = User.Identity.Name;
+		if (name != null || name != string.Empty)
+		{
+			var Cuser = await usermanager.FindByNameAsync(name);
+			if (Cuser != null)
+			{
+				var userrole = await usermanager.IsInRoleAsync(Cuser, Constans.roleAdmin);
+				if (userrole)
+				{
+					<form method="post" asp-action="UploadFreeVideo">
+						<div class="add">
+							<i class="fa-solid fa-circle-plus"></i>
+							<div>
+								<input asp-for="@Model.AddVid.Link" name="AddVid.Link" class="link" placeholder="write Your link" required>
+								<input asp-for="@Model.AddVid.Name" name="AddVid.Name" type="text" class="title" placeholder="write Your Title" required>
+								<button type="submit" class="btn"> Add IN Page</button>
+								@*  <button class="clear" type="button">Clear All</button> *@
+							</div>
+						</div>
+					</form>
+
+				}
+			}
+		}
+	}
+
+	<script src="~/js/one.js"></script>
+	<script src="~/js/bootstrap.bundle.min.js.map"></script>
+</body>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	}

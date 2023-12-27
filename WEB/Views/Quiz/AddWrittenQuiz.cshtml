@@ -1,0 +1,57 @@
+﻿@model QuizTable
+@{
+    ViewData["Title"] = "AddWrittenQuiz";
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/pdf.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jomhuria&family=Noto+Sans+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <title>مقالي</title>
+</head>
+<body>
+    <form class="addQuiz" method="post" asp-action="AddWrittenQuiz" enctype="multipart/form-data">
+        <input type="file" asp-for="@Model.File" name="File" class="form-control"  placeholder="ve" accept="application/pdf">
+        <input type="text" asp-for="@Model.Title" name="Title"  class="rounded-2 form-control"  placeholder="File Name">
+        <input type="text" asp-for="@Model.Description" name="Description" class="rounded-2 form-control" placeholder="File Description">
+
+        <div class="form-group">
+
+        <select class="form-select" asp-for="Alldegrees" name="Alldegrees" asp-items="Html.GetEnumSelectList<Alldegrees>()"
+                    aria-placeholder="bob">
+                <option value="" disabled selected hidden>Select Degree</option>
+            </select>
+        <span asp-validation-for="Alldegrees" class="text-danger"></span>
+        </div>
+            <div class="form-group">
+
+        <select class="form-select" asp-for="Semester" name="Semester" asp-items="Html.GetEnumSelectList<Semester>()"
+                    aria-placeholder="bob">
+                <option value="" disabled selected hidden>Select Semester</option>
+            </select>
+            <span asp-validation-for="Semester" class="text-danger"></span>
+            </div>
+     
+        <button id="saveButton" type="submit" class="btn fw-bold">Save</button>
+        <br />
+        @if (ViewBag.QuizSuc != null)
+        {
+            @ViewBag.QuizSuc
+        }
+    </form>
+
+
+
+    <script src="~/js/pdf.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js.map"></script>
+</body>

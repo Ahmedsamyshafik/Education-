@@ -1,0 +1,102 @@
+﻿@model WEB.ViewModel.RegisterVM
+@using Microsoft.AspNetCore.Identity;
+@{
+    @inject UserManager<ApplicationUser> usermanager
+
+    ViewData["Title"] = "AddStudent";
+}
+
+
+
+<head>
+  
+    <link rel="stylesheet" href="~/css/edit-prof.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css"> 
+    <title>اضافة مستخدم</title>
+</head>
+<body>
+    
+
+    @{
+        bool x = false;
+        @if (User.Identity.IsAuthenticated)
+        {
+            var username = User.Identity.Name;
+            @if (username != null)
+            {
+                var user = await usermanager.FindByNameAsync(username);
+                @if (user != null)
+                {
+                    var roles = await usermanager.IsInRoleAsync(user, Constans.roleAdmin);
+                    x = roles;
+                }
+            }
+
+        }
+    }
+    @if (x)
+    {
+        <div class="add">
+            <div class="card ">
+                <img src="~/assets/images/Front/teacher.png" alt=" ">
+                <h3>MR.WAEL KABIL</h3>
+            </div>
+
+            <i class="fa-solid fa-circle-plus"></i>
+            <a asp-action="EditmyAcc" asp-controller="Account">تعديل الحساب</a>
+            <a asp-action="AddStudent" asp-controller="Account" target="_blank">إضافه طالب</a>
+            <a asp-action="AddAdmin" asp-controller="Account">إضافه أدمن</a>
+            <a asp-action="MyStudents" asp-controller="Account">طلاب الثانويه</a>
+            <a asp-action="OtherCoursesStudents" asp-controller="Course">طلاب الكورسات</a>
+            <a asp-action="AdminsAccounts" asp-controller="Account">الأدمنز </a>
+
+        </div>
+    }
+
+    <div class="edit-parent">
+        <img src="~/assets/images/Front/zidan.png" alt="">
+       <div  class="form">
+        <h3> اضافة مستخدم</h3>
+            <form method="post" asp-action="AddStudent">
+                <div class="edit">
+                    <!-- <label for="name">Name</label> -->
+                    <input type="text" name="NewUser.Name" asp-for="@Model.Name" id="name" placeholder="الاسم">
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+                <div class="edit">
+                    <!-- <label for="confpass">confirm Passoword</label> -->
+                    <input type="text" name="NewUser.Phone" id="confpass" asp-for="@Model.Phone" placeholder="رقم الهاتف">
+                </div>
+
+                <div class="edit">
+                    <!-- <label for="newpass">New Passoword</label> -->
+                    <input type="password" name="NewUser.Password" asp-for="@Model.Password" id="newpass" placeholder="كلمة السر ">
+                </div>
+                <div class="edit">
+                    <!-- <label for="newpass">New Passoword</label> -->
+                    <input type="password" name="NewUser.Password2" asp-for="@Model.Password2" id="newpass" placeholder="اعد كتابه كلمه السر ">
+                </div>
+
+                    <div class="sele">
+                        <select id="degree" asp-for="@Model.Degree" aria-placeholder="bob" class="form-select my-2 mx-auto border  shadow-none p-2" name="NewUser.degree" asp-items="Html.GetEnumSelectList<Alldegrees>()" style="padding: 2px; text-align: center; ">
+                            <option value="" disabled selected hidden>أختر الصف</option>
+                        </select>
+                        <span asp-validation-for="@Model.Degree" class="text-danger"></span>
+
+                    </div>
+            <button type="submit">Save</button>
+            
+        </form>
+       </div>
+    </div>
+</body>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+	}
