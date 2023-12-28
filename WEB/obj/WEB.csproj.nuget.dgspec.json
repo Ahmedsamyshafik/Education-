@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\WEB\\WEB\\WEB.csproj": {}
+    "C:\\WEB\\WEB\\WEB.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\WEB\\WEB\\WEB.csproj": {
+    "C:\\WEB\\WEB\\WEB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\WEB\\WEB\\WEB.csproj",
+        "projectUniqueName": "C:\\WEB\\WEB\\WEB.csproj",
         "projectName": "WEB",
-        "projectPath": "D:\\Projects\\WEB\\WEB\\WEB.csproj",
+        "projectPath": "C:\\WEB\\WEB\\WEB.csproj",
         "packagesPath": "C:\\Users\\ah6me\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\WEB\\WEB\\obj\\",
+        "outputPath": "C:\\WEB\\WEB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ah6me\\AppData\\Roaming\\NuGet\\NuGet.Config",

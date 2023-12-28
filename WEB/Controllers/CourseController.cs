@@ -45,6 +45,7 @@ namespace WEB.Controllers
         }
         #endregion
 
+
         private static readonly object lockObject = new object();
         public IActionResult CoursesPage() // CousesssssPage
         {

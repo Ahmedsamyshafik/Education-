@@ -400,6 +400,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\68673e18-acc5-4e3e-8593-bb38d51a336e_wallpaper_16535540161fd23c86b7db9e1154cda1dc769f9bdb.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\690daa8e-0418-4333-b624-98d4ea49b8df_wp5556769-bojack-horseman-computer-wallpapers.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>WEB</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WEB</BasePath>
+      <RelativePath>assets/images/Course/690daa8e-0418-4333-b624-98d4ea49b8df_wp5556769-bojack-horseman-computer-wallpapers.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\690daa8e-0418-4333-b624-98d4ea49b8df_wp5556769-bojack-horseman-computer-wallpapers.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\6c2092b5-a200-4739-949b-2a65eaf6b7f1_لما الدمعه.png))">
       <SourceType>Package</SourceType>
       <SourceId>WEB</SourceId>
@@ -640,6 +656,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\9f3b0495-627a-4d70-966c-9a5b2e1181e6_watermark-2cql9MnYc-transformed.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\b045866c-2b21-4080-a881-689fe5ad4307_wp5556769-bojack-horseman-computer-wallpapers.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>WEB</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WEB</BasePath>
+      <RelativePath>assets/images/Course/b045866c-2b21-4080-a881-689fe5ad4307_wp5556769-bojack-horseman-computer-wallpapers.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\b045866c-2b21-4080-a881-689fe5ad4307_wp5556769-bojack-horseman-computer-wallpapers.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\b71639f7-068a-4ef2-a759-8a1aa43bffaf_Here’s Which Bojack Horseman Character You Are, Based On Your Myers-Briggs® Personality Type.jfif))">
       <SourceType>Package</SourceType>
       <SourceId>WEB</SourceId>
@@ -672,6 +704,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\b79601a7-6a32-4335-8e76-9024842de135_CS.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\b87d61d0-a5a7-4825-9db3-92819f127d31_WhatsApp Image 2023-12-27 at 15.06.04_03ef30b7.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>WEB</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WEB</BasePath>
+      <RelativePath>assets/images/Course/b87d61d0-a5a7-4825-9db3-92819f127d31_WhatsApp Image 2023-12-27 at 15.06.04_03ef30b7.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\b87d61d0-a5a7-4825-9db3-92819f127d31_WhatsApp Image 2023-12-27 at 15.06.04_03ef30b7.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\bba6143e-5c41-45cc-b0bd-d5b5f755c183_Here’s Which Bojack Horseman Character You Are, Based On Your Myers-Briggs® Personality Type.jfif))">
       <SourceType>Package</SourceType>
       <SourceId>WEB</SourceId>
@@ -687,6 +735,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\bba6143e-5c41-45cc-b0bd-d5b5f755c183_Here’s Which Bojack Horseman Character You Are, Based On Your Myers-Briggs® Personality Type.jfif))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\bcda9361-7740-4e35-a2b1-176f0f8e5923_WhatsApp Image 2023-12-27 at 15.06.04_03ef30b7.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>WEB</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WEB</BasePath>
+      <RelativePath>assets/images/Course/bcda9361-7740-4e35-a2b1-176f0f8e5923_WhatsApp Image 2023-12-27 at 15.06.04_03ef30b7.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\bcda9361-7740-4e35-a2b1-176f0f8e5923_WhatsApp Image 2023-12-27 at 15.06.04_03ef30b7.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\Course\bd49ab85-e4a9-4cd2-8df2-f72325f22a61_zidan2.png))">
       <SourceType>Package</SourceType>
